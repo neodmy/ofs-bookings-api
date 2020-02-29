@@ -1,0 +1,19 @@
+version: '3.5'
+services:
+  users:
+    image: 'ofs/users'
+    container_name: 'ofs-users'
+    environtment:
+      - MONGODB=ofs
+      - MONGOCOLLECTION=users
+      - MONGOHOST=mongodb
+      - MONGOPORT=27017
+      - PORT=5001
+      - DEV=0
+    ports:
+      - 5001:5001
+    depends_on:
+      - 'mongodb'
+  mongodb:
+    image: 'mongo:4.2.1'
+    container_name: 'mongodb'
